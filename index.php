@@ -32,7 +32,7 @@ try
 }
 catch(\PDOException $e)
 {
-	echo $e->getMessage() ;
+	file_put_contents("log" , $e->getMessage()) ;
 	exit(1) ;
 }
 ?>
