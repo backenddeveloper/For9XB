@@ -5,9 +5,9 @@ try
 	$db = new PDO("mysql:host=localhost;dbname=graham_db;" , "graham" , "test_password") ;
 	
 	$stmt = $db->prepare("INSERT INTO application "
-						."(first_name , last_name , email , job_role) " 
-						."VALUES "
-						."(:first_name , :last_name , :email , :job_role)") ;
+			    ."(first_name , last_name , email , job_role) " 
+			    ."VALUES "
+			    ."(:first_name , :last_name , :email , :job_role)") ;
 
 	if(isset($_POST['people']))
 	{
@@ -27,12 +27,12 @@ try
 	}
 	
 	$data = $db->query("SELECT * FROM application")->fetchAll() ;
-	@array_walk_recursive($rawData , function($parameter){return htmlentities($parameter);}) ; 
+	@array_walk_recursive($data , function($parameter){return htmlentities($parameter);}) ; 
 	
 }
 catch(\PDOException $e)
 {
-	file_put_contents("log" , $e->getMessage()) ;
+	file_put_contents("log" , $e->getMessage() , FILE_APPEND) ;
 	exit(1) ;
 }
 ?>
